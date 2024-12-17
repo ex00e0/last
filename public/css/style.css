@@ -417,3 +417,11 @@ header div {
 .void {
     height:1vmax;
 }
+
+
+.errors_absolute{
+    position: absolute;
+    z-index: 2;
+    right: 2vmax;
+    bottom: 2vmax;
+}
