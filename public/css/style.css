@@ -355,3 +355,65 @@ header div {
     font-size: 1.3vmax;
     border-radius: 100vmax;
 }
+
+/*one_new*/
+.one_new_img {
+    height: 33vmax;
+    width:100%;
+}
+.one_new_back {
+    height:6vmax;
+    display:grid;
+    grid-template-columns: 4% 1fr 4%;
+    grid-template-rows: 100%;
+}
+.one_new_back > button {
+    background-color: #C4C4C4;
+    width: 11%;
+    height: 60%;
+    border: none;
+    font-family: 'RL';
+    color: #282828;
+    font-size: 1.3vmax;
+    border-radius: 100vmax;
+    align-self: center;
+}
+.one_new_date {
+    height:5vmax;
+    display:grid;
+    grid-template-columns: 4% 1fr 4%;
+    grid-template-rows: 100%;
+}
+.one_new_date > div {
+    font-family: 'RM';
+    font-size:1.5vmax;
+    color: #C4C4C4;
+    align-self: center;
+}
+.one_new_name {
+    height:6vmax;
+    display:grid;
+    grid-template-columns: 4% 1fr 4%;
+    grid-template-rows: 100%;
+}
+.one_new_name > div {
+    font-family: 'RM';
+    font-size:2.9vmax;
+    color: #1E201F;
+    align-self: center;
+}
+.one_new_desc {
+    height:auto;
+    display:grid;
+    grid-template-columns: 4% 1fr 4%;
+    grid-template-rows: 100%;
+}
+.one_new_desc > div {
+    font-family: 'RR';
+    font-size:1.1vmax;
+    color: #282828;
+    line-height: 1.5vmax;
+}
+.void {
+    height:1vmax;
+}
