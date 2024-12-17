@@ -10,6 +10,14 @@
     font-family: 'RL';
     src: url('../fonts/Rubik-LightItalic.woff');
 }
+@font-face {
+    font-family: 'RM';
+    src: url('../fonts/Rubik-Medium.woff');
+}
+@font-face {
+    font-family: 'RR';
+    src: url('../fonts/Rubik-Regular.woff');
+}
 .r1 {
     grid-row: 1;
 }
@@ -93,6 +101,12 @@
 }
 .c1-all {
     grid-column:1/all;
+}
+.c2-all {
+    grid-column:2/all;
+}
+.c3-all {
+    grid-column:3/all;
 }
 .r1-all {
     grid-row:1/all;
@@ -223,6 +237,65 @@ header div {
 }
 .block_premieres > div {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 100%;
+    grid-template-columns: 9% 41% 1% 17% 1fr;
+    grid-template-rows: 17% 57% 8% 1fr;
+}
+.pr_date {
+    background-color: #FA434B;
+    border-radius: 100vmax;
+    height:40%;
+    align-self: center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: white;
+    font-family: 'RL';
+    font-size:1.1vmax;
+}
+.pr_age {
+    background-color: #EFEFEF;
+    border-radius: 100vmax;
+    height:40%;
+    align-self: center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: #282828;
+    font-family: 'RL';
+    font-size:1.1vmax;
+}
+.pr_name {
+    font-family: 'RM';
+    font-size:1.5vmax;
+    color: white;
+}
+.pr_desc {
+    color: #C7C7C7;
+    font-family: 'RR';
+    font-size:0.925vmax;
+}
+.pr_back {
+    background-image: url('../images/Group\ 231.png');
+}
+.red_line {
+    height:8vmax;
+    background-color: #FA434B;
+    align-items: center;
+    display: grid;
+}
+.red_line > div {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    height:50%;
+    justify-self: center;
+}
+.red_line > div > div {
+    border: 0.2vmax solid white;
+    padding: 2%;
+    font-family: 'RL';
+    font-size:1.4vmax;
+    color: white;
+    border-radius: 100vmax;
+    
 }
