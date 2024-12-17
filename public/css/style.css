@@ -297,5 +297,44 @@ header div {
     font-size:1.4vmax;
     color: white;
     border-radius: 100vmax;
-    
+}
+.news {
+    height: 63vmax;
+    display: grid;
+    grid-template-columns: 4% 1fr 15% 7% 4%;
+    grid-template-rows: 14% 1fr 13%;
+}
+.block_news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5vmax;
+}
+.block_news > div {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 53% 6% 23%  1fr;
+}
+.new_img {
+    width:100%;
+    height:100%;
+}
+.new_name {
+    font-family: 'RM';
+    font-size:1.5vmax;
+    color: #1E201F;
+    width: 80%;
+    line-height: 2.1vmax;
+}
+.new_date {
+    justify-self: end;
+    font-family: 'RM';
+    font-size:1.5vmax;
+    color: #C4C4C4;
+}
+.new_desc {
+    justify-self: end;
+    font-family: 'RR';
+    font-size:0.925vmax;
+    color: #86837F;
 }
