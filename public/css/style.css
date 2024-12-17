@@ -338,3 +338,20 @@ header div {
     font-size:0.925vmax;
     color: #86837F;
 }
+/*all_events*/
+.line_more {
+    height:6vmax;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+}
+.line_more > button {
+    background-color: #FA434B;
+    width: 12%;
+    height: 50%;
+    border: none;
+    font-family: 'RL';
+    color: white;
+    font-size: 1.3vmax;
+    border-radius: 100vmax;
+}
