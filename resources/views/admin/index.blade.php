@@ -53,7 +53,7 @@
             <td>{{$event->squad}}</td>
             <td>{{$event->image}}</td>
             <td><img width="50px" src="{{asset("images/".$event->image)}}" alt="img"></td>
-            <td><a href="{{route('event_more', $event->id)}}">Подробнее</a></td>
+            <td><a href="{{route('one_events', $event->id)}}">Подробнее</a></td>
             <td><a href="{{route('delete_event', $event->id)}}">Удалить</a></td>
         </tr>
         <?php

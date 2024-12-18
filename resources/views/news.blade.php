@@ -30,7 +30,7 @@
         {{$new->title}}
         <img height="50px" src="{{asset('img/'.$new->image)}}" alt="">
         {{$new->created_at}}
-        <a href="{{route('news_m', $new->id)}}">Подробнее</a>
+        <a href="{{route('one_news', $new->id)}}">Подробнее</a>
         <a href="{{route('news_u', $new->id)}}">Изменить</a>
         <a href="{{route('news_d', $new->id)}}">Удалить</a>
         <br>

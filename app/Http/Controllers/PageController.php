@@ -99,7 +99,7 @@ class PageController extends Controller
             $one_news = News::select('*')->where('id', '=', $news_id)->get()[0];
         }
         // ADD LIMIT 4
-        $news = News::select('*')->limit(4)->orderBy('created_at')->get();
+        $news = News::select('*')->orderBy('created_at')->get();
 
         $count = $news->count();
         return view('news', ['news'=>$news, 'count'=>$count, 'one_news'=>$one_news, 'news_id'=>$news_id]);
@@ -154,7 +154,7 @@ class PageController extends Controller
                 'squad'=>$request->squad,
                 'image'=>$request->file('image')->getClientOriginalName()
             ]);
-            $events = Event::select('*')->limit(1)->get();
+            $events = Event::select('*')->get();
             $count = Event::select('*')->get()->count();
             if($create){
                 $image_i = $request->file('image')->getClientOriginalName();
@@ -270,7 +270,7 @@ class PageController extends Controller
                     'image'=>$request->file('image')->getClientOriginalName()
                 ]);
             }
-            $events = Event::select('*')->limit(1)->get();
+            $events = Event::select('*')->get();
             $count = Event::select('*')->get()->count();
             if($update){
                 if($request->image){
@@ -341,7 +341,7 @@ class PageController extends Controller
 // DELETE EVENT ADMIN
     public function delete_event($id){
         $delete = Event::where('id', '=', $id)->delete();
-        $events = Event::select('*')->limit(1)->get();
+        $events = Event::select('*')->get();
         $count = Event::select('*')->get()->count();
         if($delete){
             return redirect()->route('admin_index',  ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное удаление мероприятия']);
@@ -353,7 +353,7 @@ class PageController extends Controller
 // DELETE NEWS ADMIN
     public function news_d($id){
         $delete = News::where('id', '=', $id)->delete();
-        $events = News::select('*')->limit(1)->get();
+        $events = News::select('*')->get();
         $count = News::select('*')->get()->count();
         if($delete){
             return view('news', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное удаление новости']);
