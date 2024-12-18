@@ -34,10 +34,10 @@ class PageController extends Controller
                 }
                 if (Hash::check($request->password, $password)) {
                     Auth::login( User::find($id));
-                    if ($role == 0) {
-                        return redirect()->route('index')->withErrors(['message'=>'Вы вошли в профиль!']);
+                    if ($role == 'user') {
+                        return redirect()->route('limit_3')->withErrors(['message'=>'Вы вошли в профиль!']);
                     }
-                    else if ($role == 1) {
+                    else if ($role == 'admin') {
                         return redirect()->route('admin/index')->withErrors(['message'=>'Вы вошли в профиль как админ!']);
                     }
                 } else {
@@ -53,20 +53,44 @@ class PageController extends Controller
        }
        
     }
+    public function logout () {
+        Auth::logout();
+        return redirect()->route('limit_3')->withErrors(['message'=>'Вы вышли из аккаунта']);
+    }
 // ALL EVENTS ON GENERAL PAGE
     public function get_all_events($id=null){
         $one_event = null;
         if($id){
             $one_event = Event::select('*')->where('id', '=', $id)->get()[0];
         }
-        $events = Event::select('*')->limit(1)->get();
+        $events = Event::select('*')->get();
         $count = Event::select('*')->get()->count();
-        return view('events', ['events'=>$events, 'count'=>$count, 'one_event'=>$one_event, 'event_id'=>$id]);
+        return view('all_events', ['events'=>$events, 'count'=>$count, 'one_event'=>$one_event, 'event_id'=>$id]);
+    }
+
+    public function all_news($id=null){
+        $one_event = null;
+        if($id){
+            $one_event = News::select('*')->where('id', '=', $id)->get()[0];
+        }
+        $events = News::select('*')->get();
+        $count = News::select('*')->get()->count();
+        return view('all_news', ['news'=>$events, 'count'=>$count, 'one_new'=>$one_event, 'new_id'=>$id]);
     }
 // LIMIT 3 EVENTS (INDEX)
     public function limit_3(){
         $soon = Event::select('*')->limit(3)->orderBy('date', 'ASC')->get();
-        return view('limit_3', ['events'=>$soon]);
+        $news = News::select('*')->limit(4)->orderBy('created_at')->get();
+        return view('index', ['events'=>$soon, 'news' => $news]);
+    }
+    public function admin_index($id=null){
+        $one_event = null;
+        if($id){
+            $one_event = Event::select('*')->where('id', '=', $id)->get()[0];
+        }
+        $events = Event::select('*')->get();
+        $count = Event::select('*')->get()->count();
+        return view('admin/index', ['events'=>$events, 'count'=>$count, 'one_event'=>$one_event, 'event_id'=>$id]);
     }
 // LIMIT 4 NEWS (INDEX)
     public function limit_4($news_id = null){
@@ -75,7 +99,7 @@ class PageController extends Controller
             $one_news = News::select('*')->where('id', '=', $news_id)->get()[0];
         }
         // ADD LIMIT 4
-        $news = News::select('*')->orderBy('created_at')->get();
+        $news = News::select('*')->limit(4)->orderBy('created_at')->get();
 
         $count = $news->count();
         return view('news', ['news'=>$news, 'count'=>$count, 'one_news'=>$one_news, 'news_id'=>$news_id]);
@@ -115,7 +139,7 @@ class PageController extends Controller
             'image.mimes'=>'Тип файла должен быть изображением'];
         $validate = Validator::make($data, $rules, $messages);
         if($validate->fails()){
-            return redirect('/')
+            return redirect('admin/index')
             ->withErrors($validate)
             ->withInput();
         }
@@ -134,11 +158,11 @@ class PageController extends Controller
             $count = Event::select('*')->get()->count();
             if($create){
                 $image_i = $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path() . "/img/", $image_i);
-                return view('events', ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Успешное добавление мероприятия!']);
+                $request->file('image')->move(public_path() . "/images/", $image_i);
+                return redirect()->route('admin_index',  ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Успешное добавление мероприятия!']);
             }
             else{
-                return view('events', ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Не удалось добавить мероприятие!']);
+                return  redirect()->route('admin_index', ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Не удалось добавить мероприятие!']);
             }
         }
     }
@@ -227,7 +251,7 @@ class PageController extends Controller
         }
         $validate = Validator::make($data, $rules, $messages);
         if($validate->fails()){
-            return redirect('/')
+            return redirect('admin/index/'.$request->id)
             ->withErrors($validate)
             ->withInput();
         }
@@ -253,10 +277,10 @@ class PageController extends Controller
                     $image_i = $request->file('image')->getClientOriginalName();
                     $request->file('image')->move(public_path() . "/img/", $image_i);
                 }
-                return view('events', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное обновление мероприятия']);
+                return redirect()->route('admin_index', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное обновление мероприятия']);
             }
             else{
-                return view('events', ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Не удалось добавить мероприятие!']);
+                return redirect()->route('admin_index', ['events'=>$events, 'count'=>$count])->withErrors(['message'=>'Не удалось добавить мероприятие!']);
             }
         }
     }
@@ -320,10 +344,10 @@ class PageController extends Controller
         $events = Event::select('*')->limit(1)->get();
         $count = Event::select('*')->get()->count();
         if($delete){
-            return view('events', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное удаление мероприятия']);
+            return redirect()->route('admin_index',  ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Успешное удаление мероприятия']);
         }
         else{
-            return view('events', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Не удалось удалить мероприятие']);
+            return redirect()->route('admin_index', ['count'=>$count, 'events'=>$events])->withErrors(['message'=>'Не удалось удалить мероприятие']);
         }
     }
 // DELETE NEWS ADMIN

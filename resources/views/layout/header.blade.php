@@ -12,16 +12,16 @@
     <nav>
         <img src="{{asset('images/unnamed 1.svg')}}" class="r1 c2">
         <div class="r1 c3 flex_nav">
-            <a href="">Главная</a>
-            <a href="">Афиша</a>
-            <a href="">Новости</a>
-            <a href="">О театре</a>
+            <a href="{{route('limit_3')}}">Главная</a>
+            <a href="{{route('get_all_events')}}">Афиша</a>
+            <a href="{{route('all_news')}}">Новости</a>
+            <a href="{{route('limit_3')}}">О театре</a>
         </div>
         @auth
-        <a href="" class="r1 c5">Выход</a>
+        <a href="{{route('logout')}}" class="r1 c5">Выход</a>
         @endauth
         @guest
-        <a href="" class="r1 c5">Вход</a>
+        <a href="{{route('login_show')}}" class="r1 c5">Вход</a>
         @endguest
     </nav>
     

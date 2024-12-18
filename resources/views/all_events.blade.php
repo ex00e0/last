@@ -5,45 +5,57 @@
 @error('message')
 <script>alert("{{$message}}");</script>
 @enderror
+<?php
+        $c = 1;
+    ?>
+@if($count != 0)
 
-<div class="premiere">
+<!-- <table> -->
+ 
+    @foreach ($events as $event)
+    @if($c % 3 == 1 || $c == 1)
+    <div class="premiere">
+        @if ($c == 1)
     <div class="headline c2 r1">Афиша</div>
+    @endif
     <div class="c2-5 r2 block_premieres">
-        <div class="pr_back">
+ @endif  
+        <div class="pr_back" style="background-image: url('images/{{$event->image}}')">
             <div class="r1 c2 pr_date">
-                <div>14 декабря, 19:30</div>
+                <div><?=substr($event->date, 8, 2).".".substr($event->date, 5, 2).".".substr($event->date, 0, 4)." ".substr($event->date, 11, 5)?></div>
             </div>
             <div class="r1 c4 pr_age">
-                <div>12+</div>
+                <div>{{$event->age}}+</div>
             </div>
-            <div class="r3 c2-all pr_name">Театр. Музыка. Любовь.</div>
-            <div class="r4 c2-all pr_desc">Концерт в честь 105-летия Загира Исмагилова</div>
+            <div class="r3 c2-all pr_name">{{$event->title}}</div>
+            <div class="r4 c2-all pr_desc">{{$event->subtitle}}</div>
         </div>
-        <div class="pr_back">
-            <div class="r1 c2 pr_date">
-                <div>14 декабря, 19:30</div>
-            </div>
-            <div class="r1 c4 pr_age">
-                <div>12+</div>
-            </div>
-            <div class="r3 c2-all pr_name">Театр. Музыка. Любовь.</div>
-            <div class="r4 c2-all pr_desc">Концерт в честь 105-летия Загира Исмагилова</div>
-        </div>
-        <div class="pr_back">
-            <div class="r1 c2 pr_date">
-                <div>14 декабря, 19:30</div>
-            </div>
-            <div class="r1 c4 pr_age">
-                <div>12+</div>
-            </div>
-            <div class="r3 c2-all pr_name">Театр. Музыка. Любовь.</div>
-            <div class="r4 c2-all pr_desc">Концерт в честь 105-летия Загира Исмагилова</div>
-        </div>
-    </div>
+        @if($c % 3 == 3 || $c == 3)
 </div>
+</div>
+@endif
+      
+        <?php
+            $c++;
+        ?>
+    @endforeach
+    @if ($count>$c)
+        {{$c}}
+        <div class="line_more">
+            <button>Смотреть еще</button>
+        </div>
+    @endif
 
-<div class="line_more">
-    <button>Смотреть еще</button>
-</div>
+
+@else
+    <div class="no_data">
+        <div>Мероприятий нет</div>
+    </div>
+@endif
+
+
+
+
+
 
 @endsection

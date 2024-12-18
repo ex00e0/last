@@ -7,7 +7,7 @@
 @enderror
 
 @guest
-<form action="{{route('login_db')}}" method="POST">
+<form action="{{route('login')}}" method="POST">
     @csrf
     <label for="">login</label>
     <input type="text" name="login" value="{{ old('login') }}" id="">

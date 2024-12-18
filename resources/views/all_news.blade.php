@@ -6,38 +6,47 @@
 <script>alert("{{$message}}");</script>
 @enderror
 
-<div class="news">
-    <div class="headline c2 r1">Новости театра</div>
-    <div class="c2-5 r2 block_news">
-        <div>
-            <img class="c1 r1 new_img" src="{{asset('images/Rectangle 153.jpg')}}">
-            <div class="c1 r3 new_name">Академия вокального искусства Аскара Абдразакова</div>
-            <div class="c1 r3 new_date">09.12.2022</div>
-            <div class="c1 r4 new_desc">Завершилась первая сессия проекта «Академия вокального искусства Аскара Абдразакова». Слушателей ждали четыре насыщенных знаниями и эмоциями дня.</div>
-        </div>
-        <div>
-            <img class="c1 r1 new_img" src="{{asset('images/Rectangle 153.jpg')}}">
-            <div class="c1 r3 new_name">Академия вокального искусства Аскара Абдразакова</div>
-            <div class="c1 r3 new_date">09.12.2022</div>
-            <div class="c1 r4 new_desc">Завершилась первая сессия проекта «Академия вокального искусства Аскара Абдразакова». Слушателей ждали четыре насыщенных знаниями и эмоциями дня.</div>
-        </div>
-        <div>
-            <img class="c1 r1 new_img" src="{{asset('images/Rectangle 153.jpg')}}">
-            <div class="c1 r3 new_name">Академия вокального искусства Аскара Абдразакова</div>
-            <div class="c1 r3 new_date">09.12.2022</div>
-            <div class="c1 r4 new_desc">Завершилась первая сессия проекта «Академия вокального искусства Аскара Абдразакова». Слушателей ждали четыре насыщенных знаниями и эмоциями дня.</div>
-        </div>
-        <div>
-            <img class="c1 r1 new_img" src="{{asset('images/Rectangle 153.jpg')}}">
-            <div class="c1 r3 new_name">Академия вокального искусства Аскара Абдразакова</div>
-            <div class="c1 r3 new_date">09.12.2022</div>
-            <div class="c1 r4 new_desc">Завершилась первая сессия проекта «Академия вокального искусства Аскара Абдразакова». Слушателей ждали четыре насыщенных знаниями и эмоциями дня.</div>
-        </div>
-    </div>
-</div>
 
+<?php
+        $c = 1;
+    ?>
+@if($count != 0)
+    
+    
+    @foreach ($news as $new)
+    @if($c % 4 == 1 || $c == 1)
+<div class="news">
+        @if ($c == 1)
+        <div class="headline c2 r1">Новости театра</div>
+    @endif
+    <div class="c2-5 r2 block_news">
+ @endif  
+        <div>
+            <img class="c1 r1 new_img" src="{{asset('images/'.$new->image)}}">
+            <div class="c1 r3 new_name">{{$new->title}}</div>
+            <div class="c1 r3 new_date"><?=substr($new->created_at, 8, 2).".".substr($new->created_at, 5, 2).".".substr($new->created_at, 0, 4)?></div>
+            <div class="c1 r4 new_desc">{{$new->description}}</div>
+        </div>
+    
+     @if($c % 4 == 4 || $c == 4)
+</div>
+</div>
+@endif
+        <?php
+            $c++;
+        ?>
+         @endforeach
+    
+      
+
+        @else
+    <div class="no_data">
+        <div>Новостей нет</div>
+    </div>
+@endif
+<!-- 
 <div class="line_more">
     <button>Смотреть еще</button>
-</div>
+</div> -->
 
 @endsection
