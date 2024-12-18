@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 17 2024 г., 10:57
+-- Время создания: Дек 18 2024 г., 10:17
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -41,6 +41,16 @@ CREATE TABLE `events` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `subtitle`, `age`, `long`, `date`, `description`, `squad`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Новая волна', 'Я волна', '0', 120, '2024-12-23 12:00:00', 'Описание \"Моей волны\"', 'Иванов Иван Иванович', 'Group 231.png', NULL, '2024-12-17 10:35:02'),
+(2, 'Старая волна223', 'Не волна', '0', 360, '2024-12-19 18:00:00', 'Описание не волны', 'Губин', 'Group 231.png', NULL, '2024-12-18 03:41:21'),
+(4, 'Совсем скоро', 'soon', '0', 210, '2024-12-18 18:30:00', 'Скоро, очень скоро', 'ПАС', 'Group 231.png', NULL, '2024-12-17 10:48:10'),
+(11, 'Следствие вели', 'с лк', '18', 60, '2024-12-18 08:21:11', '-', 'Леонид Каневский', 'Group 231.png', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -74,9 +84,20 @@ CREATE TABLE `news` (
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `description`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'a1', 'polina', 'Rectangle 153.jpg', '2024-12-17 10:29:04', '2024-12-18 03:59:44'),
+(2, 'b', 'dfjnvkdf', 'Rectangle 153.jpg', '2024-12-17 10:29:04', '2024-12-17 10:27:03'),
+(3, 'c', 'dfjnvkdf', 'Rectangle 153.jpg', '2024-12-17 10:29:04', '2024-12-17 10:27:07'),
+(4, 'd', 'mlkdff', 'Rectangle 153.jpg', '2024-12-17 10:29:04', '2024-12-17 10:27:12'),
+(6, 'e', 'e', 'Rectangle 153.jpg', '2024-12-17 21:00:00', '2024-12-18 06:10:33');
 
 -- --------------------------------------------------------
 
@@ -117,8 +138,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'useruser', '$2y$10$bMCx3xlvjwnpJGuLNB8FZ.OgoFIKB3t64.Cx.KOBOp1naQC.Vse8q\"', 'user', NULL, NULL),
-(2, 'user2', '$2y$10$LuMgeS2qoPnZShVNKoA.sO/rrNaZzTI2U2n2YwC3PuncKLg1Zq1d.', 'user', NULL, NULL);
+(1, 'useruser', '$2y$10$LuMgeS2qoPnZShVNKoA.sO/rrNaZzTI2U2n2YwC3PuncKLg1Zq1d.', 'user', NULL, NULL),
+(2, 'adminadmin', '$2y$10$XLhm8yv1.V6JYiPNsSCxIufg80lAsh1aLtObx/ix2i3yv.rJjNLea', 'admin', NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -165,7 +186,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -177,7 +198,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
