@@ -372,6 +372,6 @@ class PageController extends Controller
 
     public function event_more($id){
         $one_event = Event::select('*')->where('id', '=', $id)->get();
-        return view('one_news', ['info'=>$one_event]);
+        return view('one_events', ['info'=>$one_event[0]]);
     }
 }

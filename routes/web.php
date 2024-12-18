@@ -52,5 +52,5 @@ Route::get('/news_d/{id}', [PageController::class, 'news_d'])->name('news_d');
 
 
 // MORE INFO
-Route::get('/news_more/{id}', [PageController::class, 'news_more'])->name('news_m');
-Route::get('/event_more/{id}', [PageController::class, 'event_more'])->name('event_more');
+Route::get('/one_news/{id}', [PageController::class, 'news_more'])->name('one_news');
+Route::get('/one_events/{id}', [PageController::class, 'event_more'])->name('one_events');

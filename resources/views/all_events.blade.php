@@ -27,7 +27,7 @@
             <div class="r1 c4 pr_age">
                 <div>{{$event->age}}+</div>
             </div>
-            <div class="r3 c2-all pr_name">{{$event->title}}</div>
+            <div class="r3 c2-all pr_name"><a href="{{route('one_events', $event->id)}}" style="color:white;">{{$event->title}}</a></div>
             <div class="r4 c2-all pr_desc">{{$event->subtitle}}</div>
         </div>
         @if($c % 3 == 3 || $c == 3)

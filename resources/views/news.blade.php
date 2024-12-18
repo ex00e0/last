@@ -3,25 +3,13 @@
 @section('content')
 
 @if ($errors->any())
-    <div class="errors_absolute">
-        <ul>
+    
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <script>alert("{{$error}}");</script>
             @endforeach
-        </ul>
-    </div>
+      
 @endif
 
-@error('message')
-<script>alert("{{$message}}");</script>
-@enderror
-
-
-@if (isset($image))
-    <?php
-        // dd($image);
-    ?>
-@endif
 
 <form action="{{isset($news_id) && $news_id != null ? route('update_news') : route('create_news')}}" method="post" enctype="multipart/form-data">
     @csrf

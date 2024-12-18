@@ -1,8 +1,28 @@
 @extends('layout.header')
 @section('title', 'Главная')
 @section('content')
+<img style="width:50%;" src="{{asset("images/".$info->image)}}" class="one_new_img">
+<div class="one_new_back">
+    <button class="c2 r1" onclick="location.href=`{{route('get_all_events')}}`">Назад</button>
+</div>
+<div class="one_new_date">
+    <div class="c2 r1" ><?=substr($info->date, 8, 2).".".substr($info->date, 5, 2).".".substr($info->date, 0, 4)?></div>
+</div>
+<div class="one_new_name">
+    <div class="c2 r1" >{{$info->title}}</div>
+</div>
+<div class="void"></div>
+<div class="one_new_desc">
+    <div class="c2 r1" >
+        {{$info->description}}
+    </div>
+</div>
+<div class="void"></div>
+        
 
-<img src="{{asset('images/inno 1.png')}}" class="one_new_img">
+@endsection
+
+<!-- <img src="{{asset('images/inno 1.png')}}" class="one_new_img">
 <div class="one_new_back">
     <button class="c2 r1" onclick="location.href=`{{route('all_news')}}`">Назад</button>
 </div>
@@ -20,5 +40,4 @@
 Проект реализуется благотворительным фондом «Наше будущее» совместно с Башкирским театром оперы и балета, при поддержке Президентского фонда культурных инициатив и Министерства культуры Республики Башкортостан.
     </div>
 </div>
-<div class="void"></div>
-@endsection
+<div class="void"></div> -->

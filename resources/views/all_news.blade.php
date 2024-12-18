@@ -23,7 +23,7 @@
  @endif  
         <div>
             <img class="c1 r1 new_img" src="{{asset('images/'.$new->image)}}">
-            <div class="c1 r3 new_name">{{$new->title}}</div>
+            <div class="c1 r3 new_name"><a href="{{route('one_news', $new->id)}}">{{$new->title}}</a></div>
             <div class="c1 r3 new_date"><?=substr($new->created_at, 8, 2).".".substr($new->created_at, 5, 2).".".substr($new->created_at, 0, 4)?></div>
             <div class="c1 r4 new_desc">{{$new->description}}</div>
         </div>
